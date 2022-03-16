@@ -9,6 +9,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       home: const Home(),
       title: 'Opacitié Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue, fontFamily: Fonts.manrope),
     );
   }
