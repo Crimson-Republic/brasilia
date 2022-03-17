@@ -1,11 +1,11 @@
-import 'package:brasilia/shared/exports.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:brasilia/shared/exports.dart';
 
 class ResultPage extends StatelessWidget {
   ResultPage({Key? key}) : super(key: key);
 
-  final FinalColorController finalColorController = Get.find();
+  final ColorController colorController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +41,7 @@ class ResultPage extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.0),
                           color: Color(
-                            int.parse(
-                              '0xFF${finalColorController.hexValue.value}',
-                            ),
+                            int.parse('0xFF${colorController.generatedColor}'),
                           ),
                         ),
                       ),
@@ -53,7 +51,7 @@ class ResultPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              '#${finalColorController.hexValue.value}',
+                              '#${colorController.generatedColor.value}'.toUpperCase(),
                               style: const TextStyle(
                                 fontSize: 22.0,
                                 color: Palette.primary,
@@ -61,7 +59,7 @@ class ResultPage extends StatelessWidget {
                               ),
                             ),
                             Obx(
-                              () => finalColorController.copiedToClipboard.value
+                              () => colorController.copiedToClipboard.value
                                   ? Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: const [
@@ -81,12 +79,12 @@ class ResultPage extends StatelessWidget {
                                       highlightColor: Colors.transparent,
                                       child: SvgPicture.asset(Images.copy),
                                       onTap: () async {
-                                        finalColorController
+                                        colorController
                                             .copiedToClipboard.value = true;
                                         await Clipboard.setData(
                                           ClipboardData(
-                                            text: finalColorController
-                                                .hexValue.value,
+                                            text: colorController
+                                                .finalColor.value,
                                           ),
                                         );
                                       },
@@ -101,31 +99,7 @@ class ResultPage extends StatelessWidget {
               ),
             ],
           ),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                height: 1.0,
-                color: Palette.primary.withOpacity(0.5),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 22.0, bottom: 30.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      copyrightStatement,
-                      style: const TextStyle(color: Palette.primary),
-                    ),
-                    Text(
-                      developedBy,
-                      style: const TextStyle(color: Palette.primary),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          const Footer(),
         ],
       ),
     );
