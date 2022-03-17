@@ -13,9 +13,7 @@ class _AppState extends State<App> {
   void initState() {
     super.initState();
     Get.put(HomeController());
-    Get.put(FinalColorController());
-    Get.put(ForegroundColorController());
-    Get.put(BackgroundColorController());
+    Get.put(ColorController());
   }
 
   @override
