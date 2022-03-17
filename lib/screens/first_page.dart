@@ -20,14 +20,8 @@ class FirstPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: const [
-              Padding(
-                padding: EdgeInsets.only(top: 28.0),
-                child: Header(),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 60.0),
-                child: HeroText(),
-              ),
+              Padding(padding: EdgeInsets.only(top: 28.0), child: Header()),
+              Padding(padding: EdgeInsets.only(top: 60.0), child: HeroText()),
               Padding(
                 padding: EdgeInsets.only(top: 40.0),
                 child: InputSection(),
