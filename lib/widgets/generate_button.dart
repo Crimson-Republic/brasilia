@@ -11,12 +11,12 @@ class GenerateButton extends StatefulWidget {
 class _GenerateButtonState extends State<GenerateButton> {
   bool generating = false;
   final HomeController homeController = Get.find();
-  final FinalColorController finalColorController = Get.find();
+  final ColorController colorController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => generateColor(),
+      onTap: () => generate(),
       hoverColor: Colors.transparent,
       focusColor: Colors.transparent,
       splashColor: Colors.transparent,
@@ -56,11 +56,12 @@ class _GenerateButtonState extends State<GenerateButton> {
     );
   }
 
-  Future<void> generateColor() async {
+  Future<void> generate() async {
     setState(() => generating = true);
     await Future.delayed(const Duration(seconds: 4));
     setState(() => generating = false);
-    finalColorController.copiedToClipboard.value = false;
+    colorController.generateColor();
+    colorController.copiedToClipboard.value = false;
     await Future.delayed(const Duration(seconds: 1));
     homeController.scrollToBottom();
   }
