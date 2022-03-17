@@ -23,6 +23,9 @@ dependencies:
   # g
   get: ^4.6.1
 
+  # r
+  responsive_builder: ^0.4.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
