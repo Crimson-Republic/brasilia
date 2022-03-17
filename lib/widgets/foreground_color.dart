@@ -4,7 +4,7 @@ import 'package:brasilia/shared/exports.dart';
 class ForegroundColor extends StatelessWidget {
   ForegroundColor({Key? key}) : super(key: key);
 
-  final ForegroundColorController foregroundColorController = Get.find();
+  final ColorController colorController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -33,20 +33,28 @@ class ForegroundColor extends StatelessWidget {
                   width: 40.0,
                   height: 40.0,
                   decoration: BoxDecoration(
-                    color: foregroundColorController.hexValue.isEmpty
-                        ? Colors.amberAccent
+                    borderRadius: BorderRadius.circular(2.0),
+                    color: colorController.foreground.isEmpty
+                        ? const Color(0xFF9E938C).withOpacity(
+                            colorController.foregroundOpacity.value > 100
+                                ? 1.0
+                                : colorController.foregroundOpacity.value / 100,
+                          )
                         : Color(
                             int.parse(
-                              '0xFF${foregroundColorController.hexValue.value}',
+                              '0xFF${colorController.foreground.value}',
                             ),
+                          ).withOpacity(
+                            colorController.foregroundOpacity.value > 100
+                                ? 1.0
+                                : colorController.foregroundOpacity.value / 100,
                           ),
-                    borderRadius: BorderRadius.circular(2.0),
                   ),
                 ),
               ),
               const SizedBox(width: 16.0),
               SizedBox(
-                width: 85.0,
+                width: 95.0,
                 child: TextField(
                   maxLength: 6,
                   autofocus: true,
@@ -56,12 +64,11 @@ class ForegroundColor extends StatelessWidget {
                     fontSize: 24.0,
                     color: Palette.primary,
                   ),
-                  // onEditingComplete: () {},
                   onChanged: (value) {
-                    foregroundColorController.hexValue.value = value;
+                    colorController.foreground.value = value;
                   },
                   decoration: const InputDecoration(
-                    hintText: 'F09595',
+                    hintText: '9E938C',
                     border: InputBorder.none,
                     counter: SizedBox.shrink(),
                     hintStyle: TextStyle(
@@ -78,16 +85,27 @@ class ForegroundColor extends StatelessWidget {
                   color: Colors.white,
                   padding: const EdgeInsets.symmetric(
                     vertical: 12.0,
-                    horizontal: 28,
+                    horizontal: 28.0,
                   ),
-                  child: const TextField(
-                    maxLength: 2,
+                  child: TextField(
+                    maxLength: 3,
                     autocorrect: false,
                     cursorColor: Palette.primary,
-                    style: TextStyle(fontSize: 20.0, color: Palette.primary),
-                    decoration: InputDecoration(
+                    style: const TextStyle(
+                      fontSize: 20.0,
+                      color: Palette.primary,
+                    ),
+                    onChanged: (value) {
+                      if (value.isNotEmpty) {
+                        colorController.foregroundOpacity.value =
+                            int.parse(value);
+                      } else {
+                        colorController.foregroundOpacity.value = 100;
+                      }
+                    },
+                    decoration: const InputDecoration(
                       isDense: true,
-                      hintText: '40%',
+                      hintText: '50%',
                       border: InputBorder.none,
                       counter: SizedBox.shrink(),
                       contentPadding: EdgeInsets.zero,
