@@ -4,7 +4,7 @@ import 'package:brasilia/shared/exports.dart';
 class BackgroundColor extends StatelessWidget {
   BackgroundColor({Key? key}) : super(key: key);
 
-  final BackgroundColorController backgroundColorController = Get.find();
+  final ColorController colorController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class BackgroundColor extends StatelessWidget {
           margin: const EdgeInsets.only(top: 8.0),
           padding: const EdgeInsets.symmetric(
             vertical: 16.0,
-            horizontal: 22.0,
+            horizontal: 86.0,
           ),
           decoration: BoxDecoration(
             border: Border.all(color: Palette.primary),
@@ -33,11 +33,11 @@ class BackgroundColor extends StatelessWidget {
                   width: 40.0,
                   height: 40.0,
                   decoration: BoxDecoration(
-                    color: backgroundColorController.hexValue.isEmpty
-                        ? Colors.amberAccent
+                    color: colorController.background.isEmpty
+                        ? const Color(0xFF9E938C)
                         : Color(
                             int.parse(
-                              '0xFF${backgroundColorController.hexValue.value}',
+                              '0xFF${colorController.background.value}',
                             ),
                           ),
                     borderRadius: BorderRadius.circular(2.0),
@@ -46,7 +46,7 @@ class BackgroundColor extends StatelessWidget {
               ),
               const SizedBox(width: 16.0),
               SizedBox(
-                width: 85.0,
+                width: 95.0,
                 child: TextField(
                   maxLength: 6,
                   autocorrect: false,
@@ -55,45 +55,16 @@ class BackgroundColor extends StatelessWidget {
                     fontSize: 24.0,
                     color: Palette.primary,
                   ),
-                  // onEditingComplete: () {},
                   onChanged: (value) {
-                    backgroundColorController.hexValue.value = value;
+                    colorController.background.value = value;
                   },
                   decoration: const InputDecoration(
-                    hintText: 'F09595',
+                    hintText: '9E938C',
                     border: InputBorder.none,
                     counter: SizedBox.shrink(),
                     hintStyle: TextStyle(
                       fontSize: 24.0,
                       color: Palette.primary,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 24.0),
-              Flexible(
-                child: Container(
-                  width: 100.0,
-                  color: Colors.white,
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 12.0,
-                    horizontal: 28,
-                  ),
-                  child: const TextField(
-                    maxLength: 2,
-                    autocorrect: false,
-                    cursorColor: Palette.primary,
-                    style: TextStyle(fontSize: 20.0, color: Palette.primary),
-                    decoration: InputDecoration(
-                      isDense: true,
-                      hintText: '40%',
-                      border: InputBorder.none,
-                      counter: SizedBox.shrink(),
-                      contentPadding: EdgeInsets.zero,
-                      hintStyle: TextStyle(
-                        fontSize: 20.0,
-                        color: Palette.primary,
-                      ),
                     ),
                   ),
                 ),
