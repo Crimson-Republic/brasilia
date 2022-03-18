@@ -20,7 +20,7 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Home(),
-      title: 'Opacitié Demo',
+      title: 'Opacité Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: Fonts.manrope,
