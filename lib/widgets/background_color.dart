@@ -59,7 +59,7 @@ class BackgroundColor extends StatelessWidget {
                     colorController.background.value = value;
                   },
                   decoration: const InputDecoration(
-                    hintText: '9E938C',
+                    hintText: 'FFFFFF',
                     border: InputBorder.none,
                     counter: SizedBox.shrink(),
                     hintStyle: TextStyle(
