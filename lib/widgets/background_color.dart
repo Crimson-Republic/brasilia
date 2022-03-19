@@ -58,13 +58,13 @@ class BackgroundColor extends StatelessWidget {
                   onChanged: (value) {
                     colorController.background.value = value;
                   },
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: 'FFFFFF',
                     border: InputBorder.none,
-                    counter: SizedBox.shrink(),
+                    counter: const SizedBox.shrink(),
                     hintStyle: TextStyle(
                       fontSize: 24.0,
-                      color: Palette.primary,
+                      color: Palette.primary.withOpacity(0.2),
                     ),
                   ),
                 ),
