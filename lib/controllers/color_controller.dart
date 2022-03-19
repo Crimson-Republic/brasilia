@@ -5,11 +5,23 @@ import 'package:flutter_color/flutter_color.dart';
 class ColorController extends GetxController {
   var foregroundOpacity = 100.obs;
 
-  var foreground = ''.obs;
+  var foreground = '9E938C'.obs;
   var background = 'FFFFFF'.obs;
   var generatedColor = ''.obs;
 
   var copiedToClipboard = false.obs;
+
+  Color foregroundColor() {
+    try {
+      return Color(
+        int.parse(
+          '0xFF${foreground.value.split('#').last}',
+        ),
+      );
+    } catch (error) {
+      return const Color(0xFF9E938C);
+    }
+  }
 
   void generateColor() {
     late double opacity;
