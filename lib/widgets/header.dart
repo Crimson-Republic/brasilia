@@ -21,26 +21,29 @@ class _HeaderState extends State<Header> {
           style: TextStyle(
             fontSize: 20.0,
             color: Palette.primary,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w700,
           ),
         ),
         MouseRegion(
           onEnter: (event) => setState(() => hovering = true),
           onExit: (event) => setState(() => hovering = false),
-          child: AnimatedContainer(
-            alignment: Alignment.center,
-            duration: const Duration(milliseconds: 200),
-            decoration: BoxDecoration(
-              border: Border.all(color: Palette.primary),
-              color: hovering ? Palette.primary : Colors.transparent,
-            ),
-            padding:
-                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
-            child: Text(
-              'Contact Developers',
-              style: TextStyle(
-                fontSize: 16.0,
-                color: hovering ? Colors.white : Palette.primary,
+          child: InkWell(
+            onTap: () {},
+            child: AnimatedContainer(
+              alignment: Alignment.center,
+              duration: const Duration(milliseconds: 200),
+              decoration: BoxDecoration(
+                border: Border.all(color: Palette.primary),
+                color: hovering ? Palette.primary : Colors.transparent,
+              ),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+              child: Text(
+                'Contact Developers',
+                style: TextStyle(
+                  // fontSize: 16.0,
+                  color: hovering ? Colors.white : Palette.primary,
+                ),
               ),
             ),
           ),
