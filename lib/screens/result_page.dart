@@ -32,6 +32,14 @@ class ResultPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.05),
+                      spreadRadius: 0,
+                      blurRadius: 10,
+                      offset: const Offset(3, 3), // changes position of shadow
+                    ),
+                  ],
                 ),
                 child: Obx(
                   () => Column(
@@ -51,7 +59,8 @@ class ResultPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              '#${colorController.generatedColor.value}'.toUpperCase(),
+                              '#${colorController.generatedColor.value}'
+                                  .toUpperCase(),
                               style: const TextStyle(
                                 fontSize: 22.0,
                                 color: Palette.primary,
@@ -84,7 +93,7 @@ class ResultPage extends StatelessWidget {
                                         await Clipboard.setData(
                                           ClipboardData(
                                             text: colorController
-                                                .finalColor.value,
+                                                .generatedColor.value,
                                           ),
                                         );
                                       },
