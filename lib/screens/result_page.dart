@@ -37,7 +37,7 @@ class ResultPage extends StatelessWidget {
                       color: Colors.grey.withOpacity(0.05),
                       spreadRadius: 0,
                       blurRadius: 10,
-                      offset: const Offset(3, 3), // changes position of shadow
+                      offset: const Offset(3, 3),
                     ),
                   ],
                 ),
@@ -49,7 +49,8 @@ class ResultPage extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.0),
                           color: Color(
-                            int.parse('0xFF${colorController.generatedColor}'),
+                            int.parse(
+                                '0xFF${colorController.generatedColor.value}'),
                           ),
                         ),
                       ),
@@ -67,38 +68,36 @@ class ResultPage extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            Obx(
-                              () => colorController.copiedToClipboard.value
-                                  ? Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: const [
-                                        Icon(Icons.check, color: Colors.green),
-                                        SizedBox(width: 4.0),
-                                        Text(
-                                          'Copied',
-                                          style:
-                                              TextStyle(color: Palette.primary),
+                            colorController.copiedToClipboard.value
+                                ? Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: const [
+                                      Icon(Icons.check, color: Colors.green),
+                                      SizedBox(width: 4.0),
+                                      Text(
+                                        'Copied',
+                                        style:
+                                            TextStyle(color: Palette.primary),
+                                      ),
+                                    ],
+                                  )
+                                : InkWell(
+                                    hoverColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    splashColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    child: SvgPicture.asset(Images.copy),
+                                    onTap: () async {
+                                      colorController.copiedToClipboard.value =
+                                          true;
+                                      await Clipboard.setData(
+                                        ClipboardData(
+                                          text: colorController
+                                              .generatedColor.value,
                                         ),
-                                      ],
-                                    )
-                                  : InkWell(
-                                      hoverColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      splashColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      child: SvgPicture.asset(Images.copy),
-                                      onTap: () async {
-                                        colorController
-                                            .copiedToClipboard.value = true;
-                                        await Clipboard.setData(
-                                          ClipboardData(
-                                            text: colorController
-                                                .generatedColor.value,
-                                          ),
-                                        );
-                                      },
-                                    ),
-                            ),
+                                      );
+                                    },
+                                  ),
                           ],
                         ),
                       ),
