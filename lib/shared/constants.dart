@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum colorType { foreground, background }
+enum ColorType { foreground, background }
 
 class Fonts {
   static const String manrope = 'Manrope';
