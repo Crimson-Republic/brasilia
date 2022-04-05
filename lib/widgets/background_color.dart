@@ -28,45 +28,45 @@ class BackgroundColor extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Obx(
-                () => Container(
-                  width: 40.0,
-                  height: 40.0,
-                  decoration: BoxDecoration(
-                    color: colorController.background.isEmpty
-                        ? const Color(0xFF9E938C)
-                        : Color(
-                            int.parse(
-                              '0xFF${colorController.background.value}',
-                            ),
-                          ),
-                    borderRadius: BorderRadius.circular(2.0),
-                  ),
-                ),
+              GetBuilder<ColorController>(
+                builder: ((controller) {
+                  return Container(
+                    width: 40.0,
+                    height: 40.0,
+                    decoration: BoxDecoration(
+                      color: controller.background.isEmpty
+                          ? const Color(0xFF9E938C)
+                          : resolveColor(),
+                      borderRadius: BorderRadius.circular(2.0),
+                    ),
+                  );
+                }),
               ),
               const SizedBox(width: 16.0),
               SizedBox(
                 width: 95.0,
-                child: TextField(
-                  maxLength: 6,
-                  autocorrect: false,
-                  cursorColor: Palette.primary,
-                  style: const TextStyle(
-                    fontSize: 24.0,
-                    color: Palette.primary,
-                  ),
-                  onChanged: (value) {
-                    colorController.background.value = value;
+                child: GetBuilder<ColorController>(
+                  builder: (controller) {
+                    return TextField(
+                      autocorrect: false,
+                      cursorColor: Palette.primary,
+                      maxLength: controller.backgroundStartsWithHash ? 7 : 6,
+                      style: const TextStyle(
+                        fontSize: 24.0,
+                        color: Palette.primary,
+                      ),
+                      onChanged: (value) => onBackgroundFieldChange(value),
+                      decoration: InputDecoration(
+                        hintText: 'FFFFFF',
+                        border: InputBorder.none,
+                        counter: const SizedBox.shrink(),
+                        hintStyle: TextStyle(
+                          fontSize: 24.0,
+                          color: Palette.primary.withOpacity(0.2),
+                        ),
+                      ),
+                    );
                   },
-                  decoration: InputDecoration(
-                    hintText: 'FFFFFF',
-                    border: InputBorder.none,
-                    counter: const SizedBox.shrink(),
-                    hintStyle: TextStyle(
-                      fontSize: 24.0,
-                      color: Palette.primary.withOpacity(0.2),
-                    ),
-                  ),
                 ),
               ),
             ],
@@ -74,5 +74,28 @@ class BackgroundColor extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Color resolveColor() {
+    try {
+      return Color(
+        int.parse(
+          '0xFF${colorController.background.split('#').last}',
+        ),
+      );
+    } catch (error) {
+      return const Color(0xFFFFFFFF);
+    }
+  }
+
+  void onBackgroundFieldChange(String value) {
+    if (value.startsWith('#')) {
+      colorController.background = value.trim().substring(1);
+      colorController.setBackgroundStartsWithHash(true);
+    } else {
+      colorController.background = value.trim();
+      colorController.updateBackground(value);
+      colorController.setBackgroundStartsWithHash(false);
+    }
   }
 }
