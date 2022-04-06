@@ -16,7 +16,7 @@ class _GenerateButtonState extends State<GenerateButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () => generate(),
+        onTap: () async => await generate(),
         hoverColor: Colors.transparent,
         focusColor: Colors.transparent,
         splashColor: Colors.transparent,
@@ -72,6 +72,6 @@ class _GenerateButtonState extends State<GenerateButton> {
     colorController.generateColor();
     colorController.copiedToClipboard.value = false;
     await Future.delayed(const Duration(seconds: 1));
-     homeController.scrollToBottom();
+    homeController.scrollToBottom();
   }
 }
