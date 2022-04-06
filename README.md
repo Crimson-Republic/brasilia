@@ -8,7 +8,7 @@ Brasilia
 
 ## Overview
 
-The project aims too provide a user friendly interface to assist developers in generating hex code values from a 3-tuple consisting of foreground color (given in HEX), opacity value of foreground color (expressed in percentage), and background color (given in HEX)
+The project aims to provide a user friendly interface to assist developers in generating hex code values from a 3-tuple consisting of foreground color (given in HEX), opacity value of foreground color (expressed in percentage), and background color (given in HEX)
 
 ## Getting Started
 
