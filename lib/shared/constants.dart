@@ -20,6 +20,7 @@ class Images {
 
 class Doubles {
   static const double horizontalMargin = 50.0;
+  static const double horizontalMarginMobile = 20.0;
 }
 
 String fastestWay =
