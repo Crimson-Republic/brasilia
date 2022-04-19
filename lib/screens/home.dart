@@ -18,6 +18,7 @@ class Home extends StatelessWidget {
                   : const NeverScrollableScrollPhysics(),
               controller: homeController.scrollController,
               children: [const FirstPage(), ResultPage()],
+              // children: [ResultPage()],
             ),
           );
         },
