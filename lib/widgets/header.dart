@@ -24,29 +24,42 @@ class _HeaderState extends State<Header> {
             fontWeight: FontWeight.w700,
           ),
         ),
-        MouseRegion(
-          onEnter: (event) => setState(() => hovering = true),
-          onExit: (event) => setState(() => hovering = false),
-          child: InkWell(
-            onTap: () {},
-            child: AnimatedContainer(
-              alignment: Alignment.center,
-              duration: const Duration(milliseconds: 200),
-              decoration: BoxDecoration(
-                border: Border.all(color: Palette.primary),
-                color: hovering ? Palette.primary : Colors.transparent,
-              ),
-              padding:
-                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
-              child: Text(
-                'Contact Developers',
-                style: TextStyle(
-                  // fontSize: 16.0,
-                  color: hovering ? Colors.white : Palette.primary,
-                ),
-              ),
-            ),
-          ),
+        ResponsiveBuilder(
+          builder: (context, sizingInformation) {
+            bool isDesktop = sizingInformation.isDesktop;
+            return isDesktop
+                ? MouseRegion(
+                    onEnter: (event) => setState(() => hovering = true),
+                    onExit: (event) => setState(() => hovering = false),
+                    child: InkWell(
+                      onTap: () {},
+                      child: AnimatedContainer(
+                        alignment: Alignment.center,
+                        duration: const Duration(milliseconds: 200),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Palette.primary),
+                          color:
+                              hovering ? Palette.primary : Colors.transparent,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 16.0, horizontal: 24.0),
+                        child: Text(
+                          'Contact Developers',
+                          style: TextStyle(
+                            // fontSize: 16.0,
+                            color: hovering ? Colors.white : Palette.primary,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                : GestureDetector(
+                    onTap: () {
+                      print('Menu');
+                    },
+                    child: const Icon(Icons.menu, color: Palette.primary),
+                  );
+          },
         ),
       ],
     );
