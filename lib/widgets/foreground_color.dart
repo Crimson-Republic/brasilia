@@ -53,6 +53,7 @@ class ForegroundColor extends StatelessWidget {
                       autofocus: true,
                       autocorrect: false,
                       cursorColor: Palette.primary,
+                      controller: controller.foregroundTextController,
                       maxLength: controller.foregroundStartsWithHash ? 7 : 6,
                       style: const TextStyle(
                         fontSize: 24.0,
