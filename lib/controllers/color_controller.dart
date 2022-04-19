@@ -3,6 +3,8 @@ import 'package:brasilia/shared/exports.dart';
 import 'package:flutter_color/flutter_color.dart';
 
 class ColorController extends GetxController {
+  final foregroundTextController = TextEditingController();
+
   double foregroundOpacity = 1.0;
 
   String foreground = '9E938C';
@@ -48,5 +50,11 @@ class ColorController extends GetxController {
     );
     generatedColor.value =
         finalColor.toString().toUpperCase().split('XFF').last.substring(0, 6);
+  }
+
+  @override
+  void onClose() {
+    foregroundTextController.dispose();
+    super.onClose();
   }
 }
