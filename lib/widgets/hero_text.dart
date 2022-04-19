@@ -6,30 +6,48 @@ class HeroText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Column(
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) {
+        bool isDesktop = sizingInformation.isDesktop;
+        return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              fastestWay,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline2?.copyWith(
-                    color: Palette.primary,
-                    fontWeight: FontWeight.w700,
-                  ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  fastestWay,
+                  textAlign: TextAlign.center,
+                  style: isDesktop
+                      ? Theme.of(context).textTheme.headline2?.copyWith(
+                            color: Palette.primary,
+                            fontWeight: FontWeight.w700,
+                          )
+                      : Theme.of(context).textTheme.headline6?.copyWith(
+                            color: Palette.primary,
+                            fontWeight: FontWeight.w700,
+                          ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: isDesktop ? 20.0 : 16.0,
+                left: isDesktop ? 0.0 : 20.0,
+                right: isDesktop ? 0.0 : 20.0,
+              ),
+              child: Text(
+                justEnter.toUpperCase(),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Palette.primary,
+                  fontSize: isDesktop ? 20.0 : 14.0,
+                ),
+              ),
             ),
           ],
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 20.0),
-          child: Text(
-            justEnter.toUpperCase(),
-            style: const TextStyle(fontSize: 20.0, color: Palette.primary),
-          ),
-        ),
-      ],
+        );
+      },
     );
   }
 }
