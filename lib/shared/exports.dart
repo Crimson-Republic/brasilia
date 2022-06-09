@@ -1,6 +1,7 @@
 // pub
 export 'package:get/get.dart';
 export 'package:flutter_svg/svg.dart';
+export 'package:url_launcher/url_launcher.dart';
 export 'package:responsive_builder/responsive_builder.dart';
 
 // local
