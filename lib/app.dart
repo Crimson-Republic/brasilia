@@ -24,7 +24,7 @@ class _AppState extends State<App> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: Fonts.manrope,
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
         scaffoldBackgroundColor: Palette.scaffold,
       ),
     );
