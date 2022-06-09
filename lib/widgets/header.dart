@@ -32,14 +32,14 @@ class _HeaderState extends State<Header> {
                     onEnter: (event) => setState(() => hovering = true),
                     onExit: (event) => setState(() => hovering = false),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () async => await openMail(),
                       child: AnimatedContainer(
                         alignment: Alignment.center,
                         duration: const Duration(milliseconds: 200),
                         decoration: BoxDecoration(
                           border: Border.all(color: Palette.primary),
                           color:
-                              hovering ? Palette.primary : Colors.transparent,
+                              hovering ? Colors.transparent : Palette.primary,
                         ),
                         padding: const EdgeInsets.symmetric(
                             vertical: 16.0, horizontal: 24.0),
@@ -47,21 +47,42 @@ class _HeaderState extends State<Header> {
                           'Contact Developers',
                           style: TextStyle(
                             // fontSize: 16.0,
-                            color: hovering ? Colors.white : Palette.primary,
+                            color: hovering ? Palette.primary : Colors.white,
                           ),
                         ),
                       ),
                     ),
                   )
-                : GestureDetector(
-                    onTap: () {
-                      print('Menu');
-                    },
-                    child: const Icon(Icons.menu, color: Palette.primary),
+                : InkWell(
+                    onTap: () async => await openMail(),
+                    child: const Icon(
+                      Icons.contact_mail,
+                      color: Palette.primary,
+                    ),
                   );
           },
         ),
       ],
     );
+  }
+
+  Future<void> openMail() async {
+    String? encodeQueryParameters(Map<String, String> params) {
+      return params.entries
+          .map((e) =>
+              '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+          .join('&');
+    }
+
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: 'republic.crimson@gmail.com',
+      query: encodeQueryParameters(<String, String>{
+        'cc': 'raymarfo184@gmail.com, othnielussher16@gmail.com',
+        // 'cc': 'othnielussher16@gmail.com',
+      }),
+    );
+
+    await launch(emailLaunchUri.toString());
   }
 }
