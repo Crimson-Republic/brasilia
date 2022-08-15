@@ -1,7 +1,7 @@
 {
   "hosting": {
-    "public": "build/web",
     "site": "opacityfromcolor",
+    "public": "build/web",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
