@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:brasilia/shared/exports.dart';
+import 'package:flutter/material.dart';
 
 class Header extends StatefulWidget {
   const Header({Key? key}) : super(key: key);
@@ -83,6 +83,6 @@ class _HeaderState extends State<Header> {
       }),
     );
 
-    await launch(emailLaunchUri.toString());
+    await launchUrl(Uri.parse(emailLaunchUri.toString()));
   }
 }
