@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:brasilia/shared/exports.dart';
+import 'package:flutter/material.dart';
 
 class HeroText extends StatelessWidget {
   const HeroText({Key? key}) : super(key: key);
@@ -19,11 +19,11 @@ class HeroText extends StatelessWidget {
                   fastestWay,
                   textAlign: TextAlign.center,
                   style: isDesktop
-                      ? Theme.of(context).textTheme.headline2?.copyWith(
+                      ? Theme.of(context).textTheme.displayMedium?.copyWith(
                             color: Palette.primary,
                             fontWeight: FontWeight.w700,
                           )
-                      : Theme.of(context).textTheme.headline6?.copyWith(
+                      : Theme.of(context).textTheme.titleLarge?.copyWith(
                             color: Palette.primary,
                             fontWeight: FontWeight.w700,
                           ),

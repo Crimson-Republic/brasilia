@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:brasilia/shared/exports.dart';
+import 'package:flutter/material.dart';
 
 class FirstPage extends StatelessWidget {
   const FirstPage({Key? key}) : super(key: key);
@@ -25,9 +25,9 @@ class FirstPage extends StatelessWidget {
           child: ScrollConfiguration(
             behavior:
                 ScrollConfiguration.of(context).copyWith(scrollbars: false),
-            child: SingleChildScrollView(
+            child: const SingleChildScrollView(
               child: Column(
-                children: const [
+                children: [
                   Padding(padding: EdgeInsets.only(top: 28.0), child: Header()),
                   Padding(
                       padding: EdgeInsets.only(top: 60.0), child: HeroText()),

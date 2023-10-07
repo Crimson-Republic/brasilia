@@ -1,6 +1,6 @@
+import 'package:brasilia/shared/exports.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:brasilia/shared/exports.dart';
 
 class ResultPage extends StatelessWidget {
   ResultPage({Key? key}) : super(key: key);
@@ -77,9 +77,9 @@ class ResultPage extends StatelessWidget {
                                   ),
                                 ),
                                 colorController.copiedToClipboard.value
-                                    ? Row(
+                                    ? const Row(
                                         mainAxisSize: MainAxisSize.min,
-                                        children: const [
+                                        children: [
                                           Icon(
                                             Icons.check,
                                             color: Colors.green,
